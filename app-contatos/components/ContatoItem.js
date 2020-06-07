@@ -4,33 +4,9 @@ import Cartao from '../components/Cartao';
 import Cores from '../Cores/Cores';
 
 const ContatoItem =(props) =>{
-    const[usuarioConfirmou, setUsuarioConfirmou] = useState(false);
-
-    const confirmarEscolha=()=>{
-        setUsuarioConfirmou(true);
-    }
-    const cancelarEscolha=()=>{
-        setUsuarioConfirmou(false)
-    }
-
-    let confirmacaoText;
-
-    if (usuarioConfirmou)
-        confirmacaoText= 
-        <Cartao>
-            <Text>Realmente deseja excluir o contato?</Text>
-            <Button
-                title="sim"
-                //onPress={props.onDelete.bind(this,props.chave)}
-            />
-            <Button
-                title="não"
-                onPress={cancelarEscolha}
-            />
-        </Cartao>
-   
+    
     return(
-        <TouchableOpacity onPress={props.onSelect} onLongPress={confirmarEscolha} style={estilos.contatoItem}> 
+        <TouchableOpacity onPress={props.onSelect} onLongPress={props.onDelete} style={estilos.contatoItem}> 
             <Image
                 style={estilos.imagem} 
                 source={{uri:props.imagem}}
@@ -40,7 +16,6 @@ const ContatoItem =(props) =>{
                 <Text style={estilos.numero}>Telefone: {props.numeroContato}</Text>
                 <Text style={estilos.numero}>id: {props.idContato}</Text>
                 <Text style={estilos.numero}>Data:<Date>{[props.dataContato]}</Date></Text>
-                {confirmacaoText}
             </Cartao>
         </TouchableOpacity> 
     );
